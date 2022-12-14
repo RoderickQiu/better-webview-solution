@@ -16,3 +16,4 @@ gradle
 /app/debug/
 /app/release/
 /app/build/
+.DS_Store
