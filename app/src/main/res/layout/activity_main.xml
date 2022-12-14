@@ -84,7 +84,7 @@
                         android:src="@drawable/icon_profile_standard"
                         app:elevation="2dp"
                         app:fabSize="mini"
-                        app:backgroundTint="?attr/colorSecondaryContainer"/>
+                        app:backgroundTint="?attr/colorSecondaryContainer" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/omnibox_overview"
@@ -207,7 +207,7 @@
             android:layout_above="@+id/bottom_navigation"
             android:divider="@null"
             android:fastScrollEnabled="true"
-            android:stackFromBottom="true"/>
+            android:stackFromBottom="true" />
 
         <ScrollView
             android:layout_width="match_parent"
@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:stackFromBottom="true"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
         </ScrollView>
 
@@ -230,7 +230,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             app:menu="@menu/menu_bottom_overview"
-            app:itemBackground="?attr/colorSurface"/>
+            app:itemBackground="?attr/colorSurface" />
 
     </RelativeLayout>
 

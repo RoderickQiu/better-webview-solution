@@ -27,6 +27,7 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputLayout;
+import com.scrisstudio.bws.GlobalVariables;
 
 import java.io.ByteArrayInputStream;
 import java.util.Objects;
@@ -72,7 +73,8 @@ public class NinjaWebViewClient extends WebViewClient {
         if (ninjaWebView.isHistory()) {
             RecordAction action = new RecordAction(ninjaWebView.getContext());
             action.open(true);
-            if (action.checkUrl(ninjaWebView.getUrl(), RecordUnit.TABLE_HISTORY)) action.deleteURL(ninjaWebView.getUrl(), RecordUnit.TABLE_HISTORY);
+            if (action.checkUrl(ninjaWebView.getUrl(), RecordUnit.TABLE_HISTORY))
+                action.deleteURL(ninjaWebView.getUrl(), RecordUnit.TABLE_HISTORY);
             action.addHistory(new Record(ninjaWebView.getTitle(), ninjaWebView.getUrl(), System.currentTimeMillis(), 0, 0, ninjaWebView.isDesktopMode(), ninjaWebView.isNightMode(), 0));
             action.close();
         }
@@ -406,7 +408,7 @@ public class NinjaWebViewClient extends WebViewClient {
 
         if (ninjaWebView.isFingerPrintProtection())
             view.evaluateJavascript("var test=document.querySelector(\"a[ping]\"); if(test!==null){test.removeAttribute('ping')};", null);
-            //do not allow ping on http only pages (tested with http://tests.caniuse.com)
+        //do not allow ping on http only pages (tested with http://tests.caniuse.com)
 
         if (view.getSettings().getUseWideViewPort() && (view.getWidth() < 1300))
             view.evaluateJavascript("document.querySelector('meta[name=\"viewport\"]').setAttribute('content', 'width=1200px');", null);
@@ -443,9 +445,9 @@ public class NinjaWebViewClient extends WebViewClient {
         if (ninjaWebView.isBackPressed) return false;
 
         else {
-            // handle the url by implementing your logic
-
-            if (url.startsWith("http://") || url.startsWith("https://")) return false;
+            // don't process outer links
+            if ((url.startsWith("http://") || url.startsWith("https://")) && url.contains(GlobalVariables.hostName))
+                return false;
 
             try {
                 Intent intent;

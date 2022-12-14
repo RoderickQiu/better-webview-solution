@@ -35,6 +35,7 @@ import androidx.webkit.WebViewFeature;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.scrisstudio.bws.GlobalVariables;
 
 import java.util.HashMap;
 import java.util.List;
@@ -246,8 +247,10 @@ public class NinjaWebView extends WebView implements AlbumController {
         }
 
         if (listTrusted.isWhite(url)) omniBox_tab.setImageResource(R.drawable.icon_profile_trusted);
-        else if (listStandard.isWhite(url)) omniBox_tab.setImageResource(R.drawable.icon_profile_standard);
-        else if (listProtected.isWhite(url)) omniBox_tab.setImageResource(R.drawable.icon_profile_protected);
+        else if (listStandard.isWhite(url))
+            omniBox_tab.setImageResource(R.drawable.icon_profile_standard);
+        else if (listProtected.isWhite(url))
+            omniBox_tab.setImageResource(R.drawable.icon_profile_protected);
     }
 
     public void setProfileDefaultValues() {
@@ -416,7 +419,7 @@ public class NinjaWebView extends WebView implements AlbumController {
     }
 
     private synchronized void initAlbum() {
-        album.setAlbumTitle(context.getString(R.string.app_name));
+        album.setAlbumTitle(GlobalVariables.appName);
         album.setBrowserController(browserController);
     }
 
@@ -617,10 +620,10 @@ public class NinjaWebView extends WebView implements AlbumController {
     }
 
     public void toggleWidescreen(String url) {
-        if (url.contains(".jpg")||
-                url.contains(".jpeg")||
-                url.contains(".png")||
-                url.contains(".webg")){
+        if (url.contains(".jpg") ||
+                url.contains(".jpeg") ||
+                url.contains(".png") ||
+                url.contains(".webg")) {
             getSettings().setUseWideViewPort(true);
             getSettings().setLoadWithOverviewMode(true);
         } else {
